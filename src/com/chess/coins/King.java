@@ -1,8 +1,13 @@
-package ChessImpl;
+package com.chess.coins;
 
-public class King extends Coins{
+import com.chess.util.Position;
+
+import ChessImpl.Board;
+import ChessImpl.Player;
+
+public class King extends Coin{
 	
-	King(String name,Player player,Player opponent,Board board){
+	public King(String name,Player player,Player opponent,Board board){
 		super(name,player,opponent,board);
 	}
 	
@@ -17,7 +22,7 @@ public class King extends Coins{
 	
 	public boolean plusCheck(int xPos,int yPos) {
 		for( int i=xPos+1 ; i<=7 ; i++ ) {
-			Coins coin = board.getCoin(i, yPos);
+			Coin coin = board.getCoin(i, yPos);
 			if(coin==null)
 				continue;
 			else if( !board.isOpponent(i, yPos, opponent.getWhite()) )
@@ -29,7 +34,7 @@ public class King extends Coins{
 		}
 		
 		for( int i=xPos-1 ; i>=0 ; i-- ) {
-			Coins coin = board.getCoin(i, yPos);
+			Coin coin = board.getCoin(i, yPos);
 			if(coin==null)
 				continue;
 			else if( !board.isOpponent(i, yPos, opponent.getWhite()) )
@@ -41,7 +46,7 @@ public class King extends Coins{
 		}
 		
 		for( int i=yPos+1 ; i<=7 ; i++ ) {
-			Coins coin = board.getCoin(xPos,i);
+			Coin coin = board.getCoin(xPos,i);
 			if(coin==null)
 				continue;
 			else if( !board.isOpponent(xPos,i,opponent.getWhite()) )
@@ -52,7 +57,7 @@ public class King extends Coins{
 				break;	
 		}
 		for( int i=yPos-1 ; i>=0 ; i-- ) {
-			Coins coin = board.getCoin(xPos,i);
+			Coin coin = board.getCoin(xPos,i);
 			if(coin==null)
 				continue;
 			else if( !board.isOpponent(xPos,i,opponent.getWhite()) )
@@ -68,7 +73,7 @@ public class King extends Coins{
 	public boolean crossCheck(int xPos,int yPos) {
 		int i,j;
 		for( i=xPos+1,j=yPos+1 ; i<=7&&j<=7 ; i++,j++ ) {
-			Coins coin = board.getCoin(i,j);
+			Coin coin = board.getCoin(i,j);
 			if(coin==null)
 				continue;
 			else if( !board.isOpponent(i,j,opponent.getWhite()) )
@@ -79,7 +84,7 @@ public class King extends Coins{
 				break;
 		}
 		for( i=xPos-1,j=yPos-1 ; i>=0&&j>=0 ; i--,j-- ) {
-			Coins coin = board.getCoin(i,j);
+			Coin coin = board.getCoin(i,j);
 			if(coin==null)
 				continue;
 			else if( !board.isOpponent(i,j,opponent.getWhite()) )
@@ -90,7 +95,7 @@ public class King extends Coins{
 				break;
 		}
 		for( i=xPos+1,j=yPos-1 ; i<=7&&j>=0 ; i++,j-- ) {
-			Coins coin = board.getCoin(i,j);
+			Coin coin = board.getCoin(i,j);
 			if(coin==null)
 				continue;
 			else if( !board.isOpponent(i,j,opponent.getWhite()) )
@@ -101,7 +106,7 @@ public class King extends Coins{
 				break;
 		}
 		for( i=xPos-1,j=yPos+1 ; i>=0&&j<=7 ; i--,j++ ) {
-			Coins coin = board.getCoin(i,j);
+			Coin coin = board.getCoin(i,j);
 			if(coin==null)
 				continue;
 			else if( !board.isOpponent(i,j,opponent.getWhite()) )

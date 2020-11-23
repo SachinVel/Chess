@@ -12,7 +12,7 @@ public class Game {
 		this.black = black;
 	}
 	
-	public void displayBoard() {
+	public void display() {
 		System.out.println("Black score : "+black.getScore());
 		System.out.println("White Score : "+white.getScore());
 		board.displayBoard();

@@ -1,6 +1,11 @@
-package ChessImpl;
+package com.chess.coins;
 
-public class Pawn extends Coins{
+import com.chess.util.Position;
+
+import ChessImpl.Board;
+import ChessImpl.Player;
+
+public class Pawn extends Coin{
 	boolean firstMove;
 	
 	public Pawn(String name,boolean firsMove,Player player,Player opponent,Board board){
@@ -28,7 +33,7 @@ public class Pawn extends Coins{
 			//cross move
 			if((x1+1)==x2 && ((y1-1)==y2||(y1+1)==y2) && !board.isNull(x2, y2) && board.isOpponent(x2, y2, opponent.getWhite())){
 				firstMove = true;
-				Coins coin = board.getCoin(x2, y2);
+				Coin coin = board.getCoin(x2, y2);
 				opponent.cutCoin(coin);
 				return true;
 			}
@@ -49,7 +54,7 @@ public class Pawn extends Coins{
 			
 			if((x1-1)==x2 && ((y1-1)==y2||(y1+1)==y2) && !board.isNull(x2, y2) && board.isOpponent(x2, y2, opponent.getWhite())){
 				firstMove = true;
-				Coins coin = board.getCoin(x2, y2);
+				Coin coin = board.getCoin(x2, y2);
 				opponent.cutCoin(coin);
 				return true;
 			}

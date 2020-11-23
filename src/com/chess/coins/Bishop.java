@@ -1,8 +1,11 @@
-package ChessImpl;
+package com.chess.coins;
 
-public class Bishop extends Coins{
+import ChessImpl.Board;
+import ChessImpl.Player;
 
-	Bishop(String name,Player player ,Player opponent,Board board){
+public class Bishop extends Coin{
+
+	public Bishop(String name,Player player ,Player opponent,Board board){
 		super(name,player,opponent,board);
 	}
 	
@@ -41,7 +44,7 @@ public class Bishop extends Coins{
 		if(valid && !inBetween && board.isNull(x2, y2))
 			return true;
 		if( valid && !inBetween && !board.isNull(x2, y2) && board.isOpponent(x2, y2, opponent.getWhite())) {
-			Coins coin = board.getCoin(x2, y2);
+			Coin coin = board.getCoin(x2, y2);
 			opponent.cutCoin(coin);
 			return true;
 		}

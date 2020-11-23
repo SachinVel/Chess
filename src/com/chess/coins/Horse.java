@@ -1,8 +1,11 @@
-package ChessImpl;
+package com.chess.coins;
 
-public class Horse extends Coins{
+import ChessImpl.Board;
+import ChessImpl.Player;
+
+public class Horse extends Coin{
 	
-	Horse(String name,Player player,Player opponent,Board board){
+	public Horse(String name,Player player,Player opponent,Board board){
 		super(name,player,opponent,board);
 	}
 	
@@ -24,7 +27,7 @@ public class Horse extends Coins{
 		if(valid && board.isNull(x2, y2))
 			return true;
 		else if(valid && !board.isNull(x2, y2) && board.isOpponent(x2, y2, opponent.getWhite())) {
-			Coins coin = board.getCoin(x2, y2);
+			Coin coin = board.getCoin(x2, y2);
 			opponent.cutCoin(coin);
 			return true;
 		}

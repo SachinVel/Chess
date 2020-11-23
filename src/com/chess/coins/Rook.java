@@ -1,6 +1,9 @@
-package ChessImpl;
+package com.chess.coins;
 
-public class Rook extends Coins{
+import ChessImpl.Board;
+import ChessImpl.Player;
+
+public class Rook extends Coin{
 	
 	
 	public Rook(String name,Player player,Player opponent,Board board) {
@@ -41,7 +44,7 @@ public class Rook extends Coins{
 		if(valid && !inBetween && board.isNull(x2, y2))
 			return true;
 		if(valid && !inBetween && !board.isNull(x2, y2) && board.isOpponent(x2, y2, opponent.getWhite())) {
-			Coins coin = board.getCoin(x2, y2);
+			Coin coin = board.getCoin(x2, y2);
 			opponent.cutCoin(coin);
 			return true;
 		}

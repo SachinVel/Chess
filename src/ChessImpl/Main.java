@@ -22,18 +22,16 @@ public class Main {
 		
 		//variable declaration
 		boolean exitFlag = false;
-		int ch,x1,y1,x2,y2;
-		Scanner s = new Scanner(System.in);
+		String fromPos,toPos;
+		Scanner scanner = new Scanner(System.in);
 		
 		//implementation
 		while(!exitFlag) {
-				game.displayBoard();
-				System.out.println("enter the location of coin : ");
-				x1 = s.nextInt();
-				y1 = s.nextInt();
-				System.out.println("enter the location of move : ");
-				x2 = s.nextInt();
-				y2 = s.nextInt();
+				game.display();
+				System.out.println("enter coin location : ");
+				fromPos = scanner.next();
+				System.out.println("enter move location : ");
+				toPos = scanner.next();
 				game.move(x1,y1,x2,y2);
 //				if(game.isCheckMate()) {
 //					exitFlag=true;

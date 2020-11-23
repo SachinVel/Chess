@@ -1,12 +1,17 @@
-package ChessImpl;
+package com.chess.coins;
 
-public class Coins {
+import com.chess.util.Position;
+
+import ChessImpl.Board;
+import ChessImpl.Player;
+
+public class Coin {
 	protected String name;
 	protected Player player;
 	protected Player opponent;
 	protected Board board;
 	
-	Coins(String name,Player player,Player opponent,Board board){
+	Coin(String name,Player player,Player opponent,Board board){
 		this.name = name;
 		this.player = player;
 		this.opponent = opponent;

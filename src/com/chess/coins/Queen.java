@@ -1,10 +1,15 @@
-package ChessImpl;
+package com.chess.coins;
 
-public class Queen extends Coins{
+import com.chess.util.Position;
+
+import ChessImpl.Board;
+import ChessImpl.Player;
+
+public class Queen extends Coin{
 	Rook rook;
 	Bishop bishop;
 	
-	Queen(String name,Player player,Player opponent , Board board){
+	public Queen(String name,Player player,Player opponent , Board board){
 		super(name,player,opponent,board);
 		this.rook = new Rook("temp",player,opponent,board);
 		this.bishop = new Bishop("temp",player,opponent,board);

@@ -1,5 +1,7 @@
 package ChessImpl;
 
+import com.chess.coins.Coin;
+
 public class Player {
 	boolean white;
 	int pawns = 8;
@@ -17,7 +19,7 @@ public class Player {
 		this.yKingPosition = yKingPosition;
 	}
 	
-	public void cutCoin(Coins coin) {
+	public void cutCoin(Coin coin) {
 		if(coin.getClass().getSimpleName().equals("Pawn"))
 			this.pawns--;
 		if(coin.getClass().getSimpleName().equals("Rook"))
@@ -29,7 +31,7 @@ public class Player {
 		if(coin.getClass().getSimpleName().equals("Queen"))
 			this.queen--;
 	}
-	public void putCoin(Coins coin) {
+	public void putCoin(Coin coin) {
 		if(coin.getClass().getSimpleName().equals("Pawn"))
 			this.pawns++;
 		if(coin.getClass().getSimpleName().equals("Rook"))
