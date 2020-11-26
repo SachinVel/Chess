@@ -6,53 +6,38 @@ import ChessImpl.Player;
 public class Rook extends Coin{
 	
 	
-	public Rook(String name,Player player,Player opponent,Board board) {
-		super(name,player,opponent,board);
+	public Rook(String name,Player player) {
+		super(name,player);
+		canJump = false;
 	}
+	
 	@Override
-	public boolean isValid(int x1,int y1,int x2,int y2) {
+	public boolean isValid(int fromRowPos,int fromColPos,int toRowPos,int toColPos,Board board) {
 		boolean inBetween=false,valid=false;
-		if((x1==x2)) {
+		if((fromRowPos==toRowPos)) {
 			valid=true;
-			for(int i=y1+1 ; i<y2 ; i++) {
-				if(!board.isNull(x1,i)) {
+			int startColPos = Math.min(fromColPos,toColPos);
+			int endColPos = fromColPos+toColPos-startColPos;
+			for(int currentColPos=startColPos+1 ; currentColPos<endColPos ; currentColPos++) {
+				if(!board.isNull(fromRowPos,currentColPos)) {
 					inBetween=true;
 					break;
 				}
 			}
-			for(int i=y1-1 ; i>y2 ; i--) {
-				if(!board.isNull(x1,i)) {
-					inBetween=true;
-					break;
-				}
-			}
-		}else if(y1==y2) {
+		}else if(fromColPos==toColPos) {
 			valid=true;
-			for(int i=x1+1 ; i<x2 ; i++) {
-				if(!board.isNull(i,y1)) {
-					inBetween=true;
-					break;
-				}
-			}
-			for(int i=x1-1 ; i>x2 ; i--) {
-				if(!board.isNull(i,y1)) {
+			int startRowPos = Math.min(fromRowPos,toRowPos);
+			int endRowPos = fromRowPos+toRowPos-startRowPos;
+			
+			for(int currentRowPos=startRowPos+1 ; currentRowPos<endRowPos ; currentRowPos++) {
+				if(!board.isNull(currentRowPos,fromColPos)) {
 					inBetween=true;
 					break;
 				}
 			}
 		}
-		if(valid && !inBetween && board.isNull(x2, y2))
+		if( valid && !inBetween )
 			return true;
-		if(valid && !inBetween && !board.isNull(x2, y2) && board.isOpponent(x2, y2, opponent.getWhite())) {
-			Coin coin = board.getCoin(x2, y2);
-			opponent.cutCoin(coin);
-			return true;
-		}
 		return false;
-	}
-	
-	public void reverse() {
-		player.putCoin(this);
-	
 	}
 }

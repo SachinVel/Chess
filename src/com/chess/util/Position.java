@@ -20,7 +20,7 @@ public class Position {
 	}
 	
 	public static int getColPos(String position) {
-		return (int)position.charAt(1)-'A';
+		return (int)position.charAt(0)-'A';
 	}
 	
 	private static boolean isPositionValid(String position) {

@@ -2,6 +2,8 @@ package ChessImpl;
 
 import java.util.*;
 
+import com.chess.util.Parameters;
+
 public class Main {
 	
 	
@@ -16,27 +18,30 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		//Initialisation
 		
-		Game game = init();
-		
-		//variable declaration
-		boolean exitFlag = false;
-		String fromPos,toPos;
-		Scanner scanner = new Scanner(System.in);
-		
-		//implementation
-		while(!exitFlag) {
-				game.display();
-				System.out.println("enter coin location : ");
-				fromPos = scanner.next();
-				System.out.println("enter move location : ");
-				toPos = scanner.next();
-				game.move(x1,y1,x2,y2);
-//				if(game.isCheckMate()) {
-//					exitFlag=true;
-//				}
-				System.out.println();
+		try (Scanner scanner = new Scanner(System.in)){
+			Game game = init();
+			
+			boolean exitFlag = false;
+			String fromPos,toPos;
+
+			while(!exitFlag) {
+					game.display();
+					System.out.println("enter coin location : ");
+					fromPos = scanner.next();
+					System.out.println("enter move location : ");
+					toPos = scanner.next();
+					game.move(fromPos,toPos);
+//					if(game.isCheckMate()) {
+//						exitFlag=true;
+//					}
+					System.out.println();
+			}
+		}catch (Exception e) {
+			
+			System.out.println("Violated chess rule : "+e.getMessage());
+			e.printStackTrace();
 		}
+		
 	}
 }

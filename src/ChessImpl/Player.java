@@ -3,7 +3,7 @@ package ChessImpl;
 import com.chess.coins.Coin;
 
 public class Player {
-	boolean white;
+	boolean isWhite;
 	int pawns = 8;
 	int rooks = 2;
 	int bishops = 2;
@@ -14,7 +14,7 @@ public class Player {
 	int yKingPosition;
 	
 	Player(boolean white,int xKingPosition,int yKingPosition){
-		this.white = white;
+		this.isWhite = white;
 		this.xKingPosition = xKingPosition;
 		this.yKingPosition = yKingPosition;
 	}
@@ -43,8 +43,8 @@ public class Player {
 		if(coin.getClass().getSimpleName().equals("Queen"))
 			this.queen++;
 	}
-	public boolean getWhite() {
-		return white;
+	public boolean isWhite() {
+		return isWhite;
 	}
 	
 	public int getScore() {
@@ -57,9 +57,9 @@ public class Player {
 		return score;
 	}
 	
-	public void setKingPosition(int x,int y) {
-		xKingPosition = x;
-		yKingPosition = y;
+	public void setKingPosition(int rowPos,int colPos) {
+		xKingPosition = rowPos;
+		yKingPosition = colPos;
 	}
 	
 	public int getXKingPosition() {

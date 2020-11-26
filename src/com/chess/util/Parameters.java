@@ -1,4 +1,4 @@
-package ChessImpl;
+package com.chess.util;
 
 public final class Parameters {
 	public static final boolean WHITEFLAG = true;

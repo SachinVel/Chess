@@ -9,26 +9,24 @@ public class Queen extends Coin{
 	Rook rook;
 	Bishop bishop;
 	
-	public Queen(String name,Player player,Player opponent , Board board){
-		super(name,player,opponent,board);
-		this.rook = new Rook("temp",player,opponent,board);
-		this.bishop = new Bishop("temp",player,opponent,board);
+	public Queen(String name,Player player){
+		super(name,player);
+		this.rook = new Rook("temp",player);
+		this.bishop = new Bishop("temp",player);
+		canJump = false;
 	}
 	
-	public boolean isValid(int x1,int y1,int x2,int y2) {
+	@Override
+	public boolean isValid(int fromRowPos,int fromColPos,int toRowPos,int toColPos,Board board) {
 		
 		boolean valid = false;
 		
-		valid = rook.isValid(x1, y1, x2, y2);
+		valid = rook.isValid(fromRowPos, fromColPos, toRowPos, toColPos,board);
 		
 		if(!valid)
-			valid = bishop.isValid(x1, y1, x2, y2);
+			valid = bishop.isValid(fromRowPos, fromColPos, toRowPos, toColPos,board);
 		
 		return valid;
 			
-	}
-	
-	public void reverse() {
-		player.putCoin(this);
 	}
 }

@@ -7,15 +7,12 @@ import ChessImpl.Player;
 
 public class Coin {
 	protected String name;
-	protected Player player;
-	protected Player opponent;
-	protected Board board;
+	boolean canJump;
+	Player coinOwner;
 	
-	Coin(String name,Player player,Player opponent,Board board){
+	Coin(String name,Player player){
 		this.name = name;
-		this.player = player;
-		this.opponent = opponent;
-		this.board = board;
+		this.coinOwner = player;
 	}
 	
 	public boolean isSafe() {
@@ -25,11 +22,11 @@ public class Coin {
 		return name;
 	}
 	
-	public Player getPlayer() {
-		return player;
+	public Player getCoinOwner() {
+		return coinOwner;
 	}
 	
-	public boolean isValid(int x1,int y1,int x2,int y2) {
+	public boolean isValid(int fromRowPos,int fromColPos,int toRowPos,int toColPos, Board board) {
 		return false;
 	}
 	

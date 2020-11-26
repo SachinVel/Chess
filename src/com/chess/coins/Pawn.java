@@ -8,64 +8,57 @@ import ChessImpl.Player;
 public class Pawn extends Coin{
 	boolean firstMove;
 	
-	public Pawn(String name,boolean firsMove,Player player,Player opponent,Board board){
-		super(name,player,opponent,board);
+	
+	public Pawn(String name,boolean firsMove,Player player){
+		super(name,player);
 		this.firstMove = firstMove;
+		canJump = false;
 	}
 	
 	@Override
-	public boolean isValid(int x1,int y1,int x2,int y2) {
+	public boolean isValid(int fromRowPos,int fromColPos,int toRowPos,int toColPos,Board board) {
 		
 		
-		if(player.getWhite()) {
+		if(coinOwner.isWhite()) {
 			//first move
 			if(!firstMove) {
-				if(y1==y2 && (x1+2)==x2 && board.isNull(x2,y2)) {
+				if(fromColPos==toColPos && (fromRowPos+2)==toRowPos && board.isNull(toRowPos,toColPos)) {
 					firstMove = true;
 					return true;
 				}
 			}
 			//normal move
-			if( y1 == y2 && (x1+1)==x2 && board.isNull(x2, y2)) {
+			if( fromColPos == toColPos && (fromRowPos+1)==toRowPos && board.isNull(toRowPos, toColPos)) {
 				firstMove = true;
 				return true;	
 			}
 			//cross move
-			if((x1+1)==x2 && ((y1-1)==y2||(y1+1)==y2) && !board.isNull(x2, y2) && board.isOpponent(x2, y2, opponent.getWhite())){
+			if((fromRowPos+1)==toRowPos && Math.abs(fromColPos-toColPos)==1 && !board.isNull(toRowPos, toColPos) && board.isOpponent(toRowPos, toColPos, coinOwner)){
 				firstMove = true;
-				Coin coin = board.getCoin(x2, y2);
-				opponent.cutCoin(coin);
 				return true;
 			}
 			
 			return false;
 		}else {
 			if(!firstMove) {
-				if(y1==y2 && (x1-2)==x2 && board.isNull(x2, y2)) {
+				if(fromColPos==toColPos && (fromRowPos-2)==toRowPos && board.isNull(toRowPos, toColPos)) {
 					firstMove = true;
 					return true;
 				}
 			}
-			if( y1 == y2 && (x1-1)==x2 && board.isNull(x2, y2)) {
+			if( fromColPos == toColPos && (fromRowPos-1)==toRowPos && board.isNull(toRowPos, toColPos)) {
 				firstMove = true;
 				return true;
 				
 			}
 			
-			if((x1-1)==x2 && ((y1-1)==y2||(y1+1)==y2) && !board.isNull(x2, y2) && board.isOpponent(x2, y2, opponent.getWhite())){
+			if((fromRowPos-1)==toRowPos &&  Math.abs(fromColPos-toColPos)==1 && !board.isNull(toRowPos, toColPos) && board.isOpponent(toRowPos, toColPos, coinOwner)){
 				firstMove = true;
-				Coin coin = board.getCoin(x2, y2);
-				opponent.cutCoin(coin);
 				return true;
 			}
 			
 			return false;
 		}
-	}
-	
-	public void reverse() {
-			player.putCoin(this);
-		
 	}
 	
 }
