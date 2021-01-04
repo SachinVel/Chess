@@ -1,9 +1,8 @@
 package com.chess.coins;
 
+import com.chess.core.Board;
+import com.chess.core.Player;
 import com.chess.util.Position;
-
-import ChessImpl.Board;
-import ChessImpl.Player;
 
 public class Queen extends Coin{
 	Rook rook;

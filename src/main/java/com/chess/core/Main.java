@@ -1,4 +1,4 @@
-package ChessImpl;
+package com.chess.core;
 
 import java.util.*;
 

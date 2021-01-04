@@ -1,7 +1,7 @@
 package com.chess.coins;
 
-import ChessImpl.Board;
-import ChessImpl.Player;
+import com.chess.core.Board;
+import com.chess.core.Player;
 
 public class Rook extends Coin{
 	

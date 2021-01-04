@@ -1,4 +1,4 @@
-package ChessImpl;
+package com.chess.core;
 
 import com.chess.coins.Bishop;
 import com.chess.coins.Coin;

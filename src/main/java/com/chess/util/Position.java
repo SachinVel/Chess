@@ -1,8 +1,7 @@
 package com.chess.util;
 
 import com.chess.coins.Coin;
-
-import ChessImpl.Board;
+import com.chess.core.Board;
 
 public class Position {
 	int rowPos,colPos;

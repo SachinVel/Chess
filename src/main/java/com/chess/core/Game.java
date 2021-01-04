@@ -1,4 +1,4 @@
-package ChessImpl;
+package com.chess.core;
 
 import com.chess.util.ChessException;
 import com.chess.util.Position;
