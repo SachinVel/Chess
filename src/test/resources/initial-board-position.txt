@@ -1,0 +1,10 @@
+  A  B  C  D  E  F  G  H 
+8 BR BH BB BK BQ BB BH BR 8 
+7 BP BP BP BP BP BP BP BP 7 
+6 -- -- -- -- -- -- -- -- 6 
+5 -- -- -- -- -- -- -- -- 5 
+4 -- -- -- -- -- -- -- -- 4 
+3 -- -- -- -- -- -- -- -- 3 
+2 WP WP WP WP WP WP WP WP 2 
+1 WR WH WB WQ WK WB WH WR 1 
+  A  B  C  D  E  F  G  H 
