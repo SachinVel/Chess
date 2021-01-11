@@ -15,24 +15,24 @@ public class Pawn extends Coin{
 	}
 	
 	@Override
-	public boolean isValid(int fromRowPos,int fromColPos,int toRowPos,int toColPos,Board board) {
+	public boolean isValid(Position fromPos,Position toPos,Board board) {
 		
 		
 		if(coinOwner.isWhite()) {
 			//first move
 			if(!firstMove) {
-				if(fromColPos==toColPos && (fromRowPos+2)==toRowPos && board.isNull(toRowPos,toColPos)) {
+				if(fromPos.colPos==toPos.colPos && (fromPos.rowPos+2)==toPos.rowPos && board.isNull(toPos.rowPos,toPos.colPos)) {
 					firstMove = true;
 					return true;
 				}
 			}
 			//normal move
-			if( fromColPos == toColPos && (fromRowPos+1)==toRowPos && board.isNull(toRowPos, toColPos)) {
+			if( fromPos.colPos == toPos.colPos && (fromPos.rowPos+1)==toPos.rowPos && board.isNull(toPos.rowPos, toPos.colPos)) {
 				firstMove = true;
 				return true;	
 			}
 			//cross move
-			if((fromRowPos+1)==toRowPos && Math.abs(fromColPos-toColPos)==1 && !board.isNull(toRowPos, toColPos) && board.isOpponent(toRowPos, toColPos, coinOwner)){
+			if((fromPos.rowPos+1)==toPos.rowPos && Math.abs(fromPos.colPos-toPos.colPos)==1 && !board.isNull(toPos.rowPos, toPos.colPos) && board.isOpponent(toPos, coinOwner)){
 				firstMove = true;
 				return true;
 			}
@@ -40,18 +40,18 @@ public class Pawn extends Coin{
 			return false;
 		}else {
 			if(!firstMove) {
-				if(fromColPos==toColPos && (fromRowPos-2)==toRowPos && board.isNull(toRowPos, toColPos)) {
+				if(fromPos.colPos==toPos.colPos && (fromPos.rowPos-2)==toPos.rowPos && board.isNull(toPos.rowPos, toPos.colPos)) {
 					firstMove = true;
 					return true;
 				}
 			}
-			if( fromColPos == toColPos && (fromRowPos-1)==toRowPos && board.isNull(toRowPos, toColPos)) {
+			if( fromPos.colPos == toPos.colPos && (fromPos.rowPos-1)==toPos.rowPos && board.isNull(toPos.rowPos, toPos.colPos)) {
 				firstMove = true;
 				return true;
 				
 			}
 			
-			if((fromRowPos-1)==toRowPos &&  Math.abs(fromColPos-toColPos)==1 && !board.isNull(toRowPos, toColPos) && board.isOpponent(toRowPos, toColPos, coinOwner)){
+			if((fromPos.rowPos-1)==toPos.rowPos &&  Math.abs(fromPos.colPos-toPos.colPos)==1 && !board.isNull(toPos.rowPos, toPos.colPos) && board.isOpponent(toPos, coinOwner)){
 				firstMove = true;
 				return true;
 			}

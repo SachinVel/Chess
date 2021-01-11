@@ -1,6 +1,7 @@
 package com.chess.core;
 
 import com.chess.coins.Coin;
+import com.chess.util.Position;
 
 public class Player {
 	boolean isWhite;
@@ -10,13 +11,11 @@ public class Player {
 	int horses = 2;
 	int queen = 1;
 	int king = 1;
-	int xKingPosition;
-	int yKingPosition;
+	Position kingPos;
 	
-	Player(boolean white,int xKingPosition,int yKingPosition){
+	public Player(boolean white,Position kingPos){
 		this.isWhite = white;
-		this.xKingPosition = xKingPosition;
-		this.yKingPosition = yKingPosition;
+		this.kingPos = kingPos;
 	}
 	
 	public void cutCoin(Coin coin) {
@@ -57,17 +56,16 @@ public class Player {
 		return score;
 	}
 	
-	public void setKingPosition(int rowPos,int colPos) {
-		xKingPosition = rowPos;
-		yKingPosition = colPos;
+	public void setKingPosition(Position toPos) {
+		kingPos = toPos;
 	}
 	
 	public int getXKingPosition() {
-		return xKingPosition;
+		return kingPos.rowPos;
 	}
 	
 	public int getYKingPosition() {
-		return yKingPosition;
+		return kingPos.colPos;
 	}
 	
 }

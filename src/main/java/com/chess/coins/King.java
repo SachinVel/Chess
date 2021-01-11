@@ -11,9 +11,9 @@ public class King extends Coin{
 		canJump = false;
 	}
 	
-	public boolean isValid(int x1,int y1,int x2,int y2) {
-		if( Math.abs(x1-x2)<=1 && Math.abs(y1-y2)<=1 ) {
-			coinOwner.setKingPosition(x2, y2);
+	public boolean isValid(Position fromPos,Position toPos,Board board) {
+		if( Math.abs(fromPos.rowPos-toPos.rowPos)<=1 && Math.abs(fromPos.colPos-toPos.colPos)<=1 ) {
+			coinOwner.setKingPosition(toPos);
 			return true;
 		}
 		return false;
@@ -120,53 +120,53 @@ public class King extends Coin{
 //	}
 	
 //	public boolean horseCheck(int xPos,int yPos) {
-//		int x2,y2;
+//		int toPos.rowPos,toPos.colPos;
 //
 //		if( (xPos+2)<=7 ) {
-//			x2 = xPos+2;
+//			toPos.rowPos = xPos+2;
 //			if( yPos+1<=7 ){
-//				y2 = yPos+1;
-//				if( !board.isNull(x2, y2) && board.isOpponent(x2, y2, opponent.getWhite()) && board.getCoin(x2, y2).getClass().getSimpleName().equals("Horse"))
+//				toPos.colPos = yPos+1;
+//				if( !board.isNull(toPos.rowPos, toPos.colPos) && board.isOpponent(toPos.rowPos, toPos.colPos, opponent.getWhite()) && board.getCoin(toPos.rowPos, toPos.colPos).getClass().getSimpleName().equals("Horse"))
 //					return false;
 //			}else if( yPos-1>=0 ) {
-//				y2 = yPos-1;
-//				if( !board.isNull(x2, y2) && board.isOpponent(x2, y2, opponent.getWhite()) && board.getCoin(x2, y2).getClass().getSimpleName().equals("Horse"))
+//				toPos.colPos = yPos-1;
+//				if( !board.isNull(toPos.rowPos, toPos.colPos) && board.isOpponent(toPos.rowPos, toPos.colPos, opponent.getWhite()) && board.getCoin(toPos.rowPos, toPos.colPos).getClass().getSimpleName().equals("Horse"))
 //					return false;
 //			}
 //		}
 //		if( (xPos-2)>=0 ) {
-//			x2 = xPos-2;
+//			toPos.rowPos = xPos-2;
 //			if( yPos+1<=7 ){
-//				y2 = yPos+1;
-//				if( !board.isNull(x2, y2) && board.isOpponent(x2, y2, opponent.getWhite()) && board.getCoin(x2, y2).getClass().getSimpleName().equals("Horse"))
+//				toPos.colPos = yPos+1;
+//				if( !board.isNull(toPos.rowPos, toPos.colPos) && board.isOpponent(toPos.rowPos, toPos.colPos, opponent.getWhite()) && board.getCoin(toPos.rowPos, toPos.colPos).getClass().getSimpleName().equals("Horse"))
 //					return false;
 //			}else if( yPos-1>=0 ) {
-//				y2 = yPos-1;
-//				if( !board.isNull(x2, y2) && board.isOpponent(x2, y2, opponent.getWhite()) && board.getCoin(x2, y2).getClass().getSimpleName().equals("Horse"))
+//				toPos.colPos = yPos-1;
+//				if( !board.isNull(toPos.rowPos, toPos.colPos) && board.isOpponent(toPos.rowPos, toPos.colPos, opponent.getWhite()) && board.getCoin(toPos.rowPos, toPos.colPos).getClass().getSimpleName().equals("Horse"))
 //					return false;
 //			}
 //		}
 //		if( (yPos+2)<=7 ) {
-//			y2 = yPos+2;
+//			toPos.colPos = yPos+2;
 //			if( xPos+1<=7 ){
-//				x2 = xPos+1;
-//				if( !board.isNull(x2, y2) && board.isOpponent(x2, y2, opponent.getWhite()) && board.getCoin(x2, y2).getClass().getSimpleName().equals("Horse"))
+//				toPos.rowPos = xPos+1;
+//				if( !board.isNull(toPos.rowPos, toPos.colPos) && board.isOpponent(toPos.rowPos, toPos.colPos, opponent.getWhite()) && board.getCoin(toPos.rowPos, toPos.colPos).getClass().getSimpleName().equals("Horse"))
 //					return false;
 //			}else if( xPos-1>=0 ) {
-//				x2 = xPos-1;
-//				if( !board.isNull(x2, y2) && board.isOpponent(x2, y2, opponent.getWhite()) && board.getCoin(x2, y2).getClass().getSimpleName().equals("Horse"))
+//				toPos.rowPos = xPos-1;
+//				if( !board.isNull(toPos.rowPos, toPos.colPos) && board.isOpponent(toPos.rowPos, toPos.colPos, opponent.getWhite()) && board.getCoin(toPos.rowPos, toPos.colPos).getClass().getSimpleName().equals("Horse"))
 //					return false;
 //			}
 //		}
 //		if( (yPos-2)>=0 ) {
-//			y2 = yPos-2;
+//			toPos.colPos = yPos-2;
 //			if( xPos+1<=7 ){
-//				x2 = xPos+1;
-//				if( !board.isNull(x2, y2) && board.isOpponent(x2, y2, opponent.getWhite()) && board.getCoin(x2, y2).getClass().getSimpleName().equals("Horse"))
+//				toPos.rowPos = xPos+1;
+//				if( !board.isNull(toPos.rowPos, toPos.colPos) && board.isOpponent(toPos.rowPos, toPos.colPos, opponent.getWhite()) && board.getCoin(toPos.rowPos, toPos.colPos).getClass().getSimpleName().equals("Horse"))
 //					return false;
 //			}else if( xPos-1>=0 ) {
-//				x2 = xPos-1;
-//				if( !board.isNull(x2, y2) && board.isOpponent(x2, y2, opponent.getWhite()) && board.getCoin(x2, y2).getClass().getSimpleName().equals("Horse"))
+//				toPos.rowPos = xPos-1;
+//				if( !board.isNull(toPos.rowPos, toPos.colPos) && board.isOpponent(toPos.rowPos, toPos.colPos, opponent.getWhite()) && board.getCoin(toPos.rowPos, toPos.colPos).getClass().getSimpleName().equals("Horse"))
 //					return false;
 //			}
 //		}
@@ -201,7 +201,7 @@ public class King extends Coin{
 //	public boolean isCheckMate() {
 //		int xPos = player.getXKingPosition();
 //		int yPos = player.getYKingPosition();
-//		int x2,y2;
+//		int toPos.rowPos,toPos.colPos;
 //		boolean isSafe=false;
 //		isSafe = this.isSafe();
 //		if((xPos+1)<=7) {

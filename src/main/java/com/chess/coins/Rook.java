@@ -2,6 +2,7 @@ package com.chess.coins;
 
 import com.chess.core.Board;
 import com.chess.core.Player;
+import com.chess.util.Position;
 
 public class Rook extends Coin{
 	
@@ -12,25 +13,25 @@ public class Rook extends Coin{
 	}
 	
 	@Override
-	public boolean isValid(int fromRowPos,int fromColPos,int toRowPos,int toColPos,Board board) {
+	public boolean isValid(Position fromPos,Position toPos,Board board) {
 		boolean inBetween=false,valid=false;
-		if((fromRowPos==toRowPos)) {
+		if((fromPos.rowPos==toPos.rowPos)) {
 			valid=true;
-			int startColPos = Math.min(fromColPos,toColPos);
-			int endColPos = fromColPos+toColPos-startColPos;
+			int startColPos = Math.min(fromPos.colPos,toPos.colPos);
+			int endColPos = fromPos.colPos+toPos.colPos-startColPos;
 			for(int currentColPos=startColPos+1 ; currentColPos<endColPos ; currentColPos++) {
-				if(!board.isNull(fromRowPos,currentColPos)) {
+				if(!board.isNull(fromPos.rowPos,currentColPos)) {
 					inBetween=true;
 					break;
 				}
 			}
-		}else if(fromColPos==toColPos) {
+		}else if(fromPos.colPos==toPos.colPos) {
 			valid=true;
-			int startRowPos = Math.min(fromRowPos,toRowPos);
-			int endRowPos = fromRowPos+toRowPos-startRowPos;
+			int startRowPos = Math.min(fromPos.rowPos,toPos.rowPos);
+			int endRowPos = fromPos.rowPos+toPos.rowPos-startRowPos;
 			
 			for(int currentRowPos=startRowPos+1 ; currentRowPos<endRowPos ; currentRowPos++) {
-				if(!board.isNull(currentRowPos,fromColPos)) {
+				if(!board.isNull(currentRowPos,fromPos.colPos)) {
 					inBetween=true;
 					break;
 				}

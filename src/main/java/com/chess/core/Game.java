@@ -1,6 +1,7 @@
 package com.chess.core;
 
 import com.chess.util.ChessException;
+import com.chess.util.Parameters;
 import com.chess.util.Position;
 
 public class Game {
@@ -9,21 +10,19 @@ public class Game {
 	Player black;
 	boolean isWhiteturn = true;
 	
-	Game(Board board,Player white,Player black){
-		this.board = board;
-		this.white = white;
-		this.black = black;
+	Game() throws ChessException{
+		this.board = new Board();
+		this.white = new Player(Parameters.WHITEFLAG,new Position(Parameters.WHITE_KING_POSITION));
+		this.black = new Player(Parameters.BLACKFLAG,new Position(Parameters.BLACK_KING_POSITION));
+		board.initialize(white,black);
 	}
 	
 	public void display() {
 		System.out.println("Black score : "+black.getScore());
 		System.out.println("White Score : "+white.getScore());
 		board.displayBoard();
-		displayTurn();
-		
+		displayTurn();	
 	}
-	
-	
 	
 	private void displayTurn() {
 		if(isWhiteturn)
@@ -40,21 +39,18 @@ public class Game {
 		return black.getScore();
 	}
 	
-	public void move(String fromPos,String toPos ) throws ChessException{
+	public void move(String fromPosStr,String toPosStr ) throws ChessException{
 		
 		boolean valid=false;
 		
-		int fromRowPos = Position.getRowPos(fromPos);
-		int fromColPos = Position.getColPos(fromPos);
-		int toRowPos = Position.getRowPos(toPos);
-		int toColPos = Position.getColPos(toPos);
+		Position fromPos = new Position(fromPosStr);
+		Position toPos = new Position(toPosStr);
 		
-		System.out.println("from : "+fromRowPos+" "+fromColPos);
-		if(board.isNull(fromRowPos, fromColPos)) {
+		if(board.isNull(fromPos)) {
 			valid = false;
 		}
-		else if( isWhiteturn == board.getCoin(fromRowPos, fromColPos).getCoinOwner().isWhite()) {
-			valid = board.move(fromRowPos, fromColPos, toRowPos, toColPos,isWhiteturn);
+		else if( isWhiteturn == board.getCoin(fromPos).getCoinOwner().isWhite()) {
+			valid = board.move(fromPos, toPos,isWhiteturn);
 		}
 		
 		if(valid)

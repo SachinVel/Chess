@@ -4,22 +4,14 @@ import com.chess.coins.Coin;
 import com.chess.core.Board;
 
 public class Position {
-	int rowPos,colPos;
+	public int rowPos,colPos;
 	
 	public Position(String position) throws ChessException{
 		if( !isPositionValid(position) ) {
 			throw new ChessException("Position is invalid");
 		} 
-		this.rowPos = getRowPos(position);
-		this.colPos = getColPos(position);
-	}
-	
-	public static int getRowPos(String position) {
-		return (Integer.parseInt(position.substring(1,2))-1);
-	}
-	
-	public static int getColPos(String position) {
-		return (int)position.charAt(0)-'A';
+		this.rowPos = (Integer.parseInt(position.substring(1,2))-1);
+		this.colPos = (int)position.charAt(0)-'A';
 	}
 	
 	private static boolean isPositionValid(String position) {
@@ -28,19 +20,12 @@ public class Position {
 			return false;
 		}
 		
-		if( !position.matches("[A-Z]{1}[1-8]{1}") ) {
+		if( !position.matches("[A-F]{1}[1-8]{1}") ) {
 			return false;
 		}
 			
 		return true;
 	}
 	
-	public static Coin getCoinFromPosition(Board board,String position) throws ChessException{
-		if( !isPositionValid(position) ) {
-			throw new ChessException("Position is invalid");
-		}
-		int rowPos = getRowPos(position);
-		int colPos = getColPos(position);
-		return board.getCoin(rowPos, colPos);
-	}
+	
 }

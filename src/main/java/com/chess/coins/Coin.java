@@ -4,7 +4,7 @@ import com.chess.core.Board;
 import com.chess.core.Player;
 import com.chess.util.Position;
 
-public class Coin {
+public abstract class Coin {
 	protected String name;
 	boolean canJump;
 	Player coinOwner;
@@ -25,9 +25,7 @@ public class Coin {
 		return coinOwner;
 	}
 	
-	public boolean isValid(int fromRowPos,int fromColPos,int toRowPos,int toColPos, Board board) {
-		return false;
-	}
+	abstract public boolean isValid(Position fromPos,Position toPos, Board board);
 	
 	public void reverse() {
 		return;

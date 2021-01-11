@@ -16,14 +16,14 @@ public class Queen extends Coin{
 	}
 	
 	@Override
-	public boolean isValid(int fromRowPos,int fromColPos,int toRowPos,int toColPos,Board board) {
+	public boolean isValid(Position fromPos,Position toPos,Board board) {
 		
 		boolean valid = false;
 		
-		valid = rook.isValid(fromRowPos, fromColPos, toRowPos, toColPos,board);
+		valid = rook.isValid(fromPos, toPos, board);
 		
 		if(!valid)
-			valid = bishop.isValid(fromRowPos, fromColPos, toRowPos, toColPos,board);
+			valid = bishop.isValid(fromPos, toPos,board);
 		
 		return valid;
 			

@@ -2,6 +2,7 @@ package com.chess.coins;
 
 import com.chess.core.Board;
 import com.chess.core.Player;
+import com.chess.util.Position;
 
 public class Bishop extends Coin{
 
@@ -10,13 +11,13 @@ public class Bishop extends Coin{
 		canJump = false;
 	}
 	
-	public boolean isValid(int fromRowPos,int fromColPos,int toRowPos,int toColPos, Board board) {
-		int rowDif = Math.abs(fromRowPos-toRowPos);
-		int colDif = Math.abs(fromColPos-toColPos);
-		int rowStartPos = Math.min(fromRowPos, toRowPos);
-		int colStartPos = Math.min(fromColPos,toColPos);
-		int rowEndPos = fromRowPos+toRowPos-rowStartPos;
-		int colEndPos = fromColPos+toColPos-colStartPos;
+	public boolean isValid(Position fromPos,Position toPos, Board board) {
+		int rowDif = Math.abs(fromPos.rowPos-toPos.rowPos);
+		int colDif = Math.abs(fromPos.colPos-toPos.colPos);
+		int rowStartPos = Math.min(fromPos.rowPos, toPos.rowPos);
+		int colStartPos = Math.min(fromPos.colPos,toPos.colPos);
+		int rowEndPos = fromPos.rowPos+toPos.rowPos-rowStartPos;
+		int colEndPos = fromPos.colPos+toPos.colPos-colStartPos;
 		
 		boolean valid=false,inBetween=false;
 		if( rowDif==colDif ){

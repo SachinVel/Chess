@@ -9,6 +9,7 @@ import com.chess.coins.Queen;
 import com.chess.coins.Rook;
 import com.chess.util.ChessException;
 import com.chess.util.Parameters;
+import com.chess.util.Position;
 
 public class Board {
 	
@@ -94,20 +95,20 @@ public class Board {
 		System.out.println("  A  B  C  D  E  F  G  H ");
 	}
 	
-	public boolean move(int fromRowPos,int fromColPos,int toRowPos,int toColPos,boolean isWhiteTurn) throws ChessException{	
+	public boolean move(Position fromPos,Position toPos,boolean isWhiteTurn) throws ChessException{	
 		
-		if( fromRowPos==toRowPos && fromColPos==toColPos ) {
+		if( fromPos.rowPos==toPos.rowPos && fromPos.colPos==toPos.colPos ) {
 			throw new ChessException("cannot move into same location");
 		}
 		Player opponentPlayer;
-		Coin currentCoin = coins[fromRowPos][fromColPos];
+		Coin currentCoin = coins[fromPos.rowPos][fromPos.colPos];
 		Coin destCoin;
 		
-		if(currentCoin.isValid(fromRowPos,fromColPos,toRowPos,toColPos,this)) {
-			destCoin = coins[toRowPos][toColPos];
+		if(currentCoin.isValid(fromPos,toPos,this)) {
+			destCoin = coins[toPos.rowPos][toPos.colPos];
 			if( destCoin==null ) {
-				coins[toRowPos][toColPos] = currentCoin;
-				coins[fromRowPos][fromColPos]=null;
+				coins[toPos.rowPos][toPos.colPos] = currentCoin;
+				coins[fromPos.rowPos][fromPos.colPos]=null;
 				return true;
 			}else if( destCoin.getCoinOwner()!=currentCoin.getCoinOwner() ){
 				opponentPlayer = destCoin.getCoinOwner();
@@ -118,71 +119,32 @@ public class Board {
 			
 		}
 		return false;
-		
-//		if(isWhiteTurn && !whiteKing.isSafe()) {
-//			
-//			if(coin.isValid(fromRowPos,fromColPos,toRowPos,toColPos,this)) {
-//				temp = coins[toRowPos][toColPos];
-//				coins[toRowPos][toColPos] = coin;
-//				if(whiteKing.isSafe()) {
-//					coins[fromRowPos][fromColPos] = null;
-//					return true;
-//				}else {
-//					coins[fromRowPos][fromColPos]=coin;
-//					coins[toRowPos][toColPos]=temp;
-//					if(temp!=null)temp.reverse();
-//					return false;
-//				}
-//			}
-//			
-//		}else if(!isWhiteTurn && !blackKing.isSafe()) {
-//			
-//			if(coin.isValid(fromRowPos,fromColPos,toRowPos,toColPos,this)) {
-//				temp = coins[toRowPos][toColPos];
-//				coins[toRowPos][toColPos] = coin;
-//				if( blackKing.isSafe() ) {
-//					coins[fromRowPos][fromColPos] = null;
-//					return true;
-//				}else {
-//					coins[fromRowPos][fromColPos]=coin;
-//					coins[toRowPos][toColPos]=temp;
-//					if(temp!=null)temp.reverse();
-//					return false;
-//				}
-//			}
-//		}else if(coin.isValid(fromRowPos,fromColPos,toRowPos,toColPos,this)) {
-//			temp = coins[toRowPos][toColPos];
-//			coins[toRowPos][toColPos] = coin;
-//			coins[fromRowPos][fromColPos]=null;
-//			if((isWhiteTurn && !whiteKing.isSafe()) || (!isWhiteTurn && !blackKing.isSafe())) {
-//				
-//				coins[fromRowPos][fromColPos]=coin;
-//				coins[toRowPos][toColPos]=temp;
-//				if(temp!=null)temp.reverse();
-//				return false;
-//			}
-//			return true;
-//		}
-//			return false;
 	}
 	
-	public boolean isNull(int x,int y) {
-		if(coins[x][y]==null)
+	public boolean isNull(int curRowInd,int curColInd) {
+		if(coins[curRowInd][curColInd]==null)
 			return true;
 		else
 			return false;
 	}
 	
-	public boolean isOpponent(int x,int y,Player coinOwner) {
-		Coin destCoin = coins[x][y];
+	public boolean isNull(Position curPos) {
+		if(coins[curPos.rowPos][curPos.colPos]==null)
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean isOpponent(Position curPos,Player coinOwner) {
+		Coin destCoin = coins[curPos.rowPos][curPos.colPos];
 		if(coinOwner.isWhite() != destCoin.getCoinOwner().isWhite()) {
 			return true;
 		}
 		return false;
 	}
 	
-	public Coin getCoin(int x,int y) {
-		return coins[x][y];
+	public Coin getCoin(Position curPos) {
+		return coins[curPos.rowPos][curPos.colPos];
 	}
 	
 //	public boolean isCheckMate(boolean isWhiteTurn) {
