@@ -37,7 +37,8 @@ public class Rook extends Coin{
 				}
 			}
 		}
-		if( valid && !inBetween )
+		boolean isDestinationValid =  board.isOpponent(toPos, coinOwner)||board.isNull(toPos.rowPos,toPos.colPos);
+		if( valid && !inBetween && isDestinationValid )
 			return true;
 		return false;
 	}
